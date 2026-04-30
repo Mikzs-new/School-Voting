@@ -1,8 +1,13 @@
 from django.db import models
 
+from school.models import School
+
 class Course(models.Model):
     name = models.CharField(max_length=255)
-
+    school_id = models.ForeignKey(
+        School,
+        on_delete=models.CASCADE,
+    )
     def __str__(self):
         return self.name
 
@@ -10,6 +15,10 @@ class Student(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     school_student_id = models.CharField(max_length=255)
+    school_id = models.ForeignKey(
+        School,
+        on_delete=models.CASCADE,
+    )
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE

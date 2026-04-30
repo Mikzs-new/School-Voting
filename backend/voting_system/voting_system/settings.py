@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'candidates',
     'elections',
     'facilitators',
+    'school',
     'students',
+    'votes',
 ]
 
 MIDDLEWARE = [
