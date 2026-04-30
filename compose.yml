@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./backend 
+    container_name: django_backend
+    env_file: 
+      - ./backend:/.env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/voting_system
+    ports:
+      - 8000:8000
+  frontend:
+    depends_on:
+      - backend
