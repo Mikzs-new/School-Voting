@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-from dotenv import load_env
+from dotenv import load_dotenv
 from pathlib import Path
 import os
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'candidates',
     'elections',
     'facilitators',
-    'school',
+    'schools',
     'students',
     'votes',
 ]
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'voting_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-load_env()
+load_dotenv()
 
 DATABASES = {
     'default': {

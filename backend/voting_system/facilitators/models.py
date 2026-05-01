@@ -1,6 +1,6 @@
 from django.db import models
 
-from school.models import School
+from schools.models import School
 
 class Facilitator(models.Model):
     first_name = models.CharField(max_length=255)

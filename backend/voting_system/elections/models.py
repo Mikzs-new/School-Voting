@@ -1,7 +1,8 @@
 from django.db import models
 
 from students.models import Course
-from school.models import School
+from schools.models import School
+from facilitators.models import Facilitator
 
 class Election(models.Model):
     name = models.CharField(max_length=255)
@@ -10,9 +11,14 @@ class Election(models.Model):
         School,
         on_delete=models.CASCADE,
     )
-
+    created_by = models.ForeignKey(
+        Facilitator,
+        on_delete=models.CASCADE
+    )
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
+
+
 
     def __str__(self):
         return self.school.__str__() + ' ' + self.name

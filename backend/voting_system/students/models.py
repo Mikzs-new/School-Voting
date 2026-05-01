@@ -1,6 +1,6 @@
 from django.db import models
 
-from school.models import School
+from schools.models import School
 
 class Course(models.Model):
     name = models.CharField(max_length=255)
@@ -15,7 +15,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     school_student_id = models.CharField(max_length=255)
-    school_id = models.ForeignKey(
+    school = models.ForeignKey(
         School,
         on_delete=models.CASCADE,
     )
