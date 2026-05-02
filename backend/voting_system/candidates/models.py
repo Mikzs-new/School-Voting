@@ -26,7 +26,7 @@ class Candidate(models.Model):
         Position,
         on_delete=models.CASCADE,
     )
-    partlist = models.ForeignKey(
+    partylist = models.ForeignKey(
         Partylist,
         on_delete=models.CASCADE,
         null=True

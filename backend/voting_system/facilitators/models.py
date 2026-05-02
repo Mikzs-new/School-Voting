@@ -6,7 +6,7 @@ class Facilitator(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     school_staff_id = models.CharField(max_length=255)
-    school_id = models.ForeignKey(
+    school = models.ForeignKey(
         School,
         on_delete=models.CASCADE,
     )

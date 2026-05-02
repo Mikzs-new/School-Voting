@@ -4,7 +4,7 @@ from schools.models import School
 
 class Course(models.Model):
     name = models.CharField(max_length=255)
-    school_id = models.ForeignKey(
+    school = models.ForeignKey(
         School,
         on_delete=models.CASCADE,
     )

@@ -18,8 +18,6 @@ class Election(models.Model):
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
 
-
-
     def __str__(self):
         return self.school.__str__() + ' ' + self.name
 
