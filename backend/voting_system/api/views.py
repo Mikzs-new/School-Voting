@@ -1,11 +1,78 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
-from students.models import Student
+from candidates.models import Candidate, Partylist
+from elections.models import Election, Position, CourseValidItem, YearLevelValidItem
+from facilitators.models import Facilitator
+from schools.models import School
+from students.models import Student, Course
+from votes.models import Vote, VoteItem
 
-from .serializer import StudentCreateSerializer, StudentSerializer
+from .serializer import CandidateSerializer, CandidateCreateSerializer, PartylistSerializer, PartylistCreateSerializer, ElectionSerializer, ElectionCreateSerializer, PositionSerializer, PositionCreateSerializer, CourseValidItemSerializer, CourseValidItemCreateSerializer, YLValidItemSerializer, YLValidItemCreateSerializer, FacilitatorSerializer, FacilitatorCreateSerializer, SchoolSerializer, SchoolCreateSerializer, StudentSerializer, StudentCreateSerializer, CourseSerializer, CourseCreateSerializer, VoteSerializer, VoteCreateSerializer
+
+# API version 1
+
+# Direct Endpoint
+
+class CandidateViewSet(viewsets.ModelViewSet):
+    queryset = Candidate.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CandidateCreateSerializer
+        return CandidateSerializer
+
+class PartylistViewSet(viewsets.ModelViewSet):
+    queryset = Partylist.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PartylistCreateSerializer
+        return PartylistSerializer
+    
+class ElectionViewSet(viewsets.ModelViewSet):
+    queryset = Election.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return ElectionCreateSerializer
+        return ElectionSerializer
+
+class FacilitatorViewSet(viewsets.ModelViewSet):
+    queryset = Facilitator.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return FacilitatorCreateSerializer
+        return FacilitatorSerializer
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CourseCreateSerializer
+        return CourseSerializer
+
+class SchoolViewSet(viewsets.ModelViewSet):
+    queryset = School.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return SchoolCreateSerializer
+        return SchoolSerializer
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -21,3 +88,14 @@ class StudentViewSet(viewsets.ModelViewSet):
         if self.request.method == 'POST':
             return StudentCreateSerializer
         return StudentSerializer
+
+class VoteViewSet(viewsets.ModelViewSet):
+    queryset = Vote.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return VoteCreateSerializer
+        return VoteSerializer
+    
+# Bulk POST endpoint

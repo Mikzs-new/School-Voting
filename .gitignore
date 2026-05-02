@@ -3,6 +3,9 @@
 .env.*  
 *.pem
 
+__pycache__/
+migrations/
+
 node-modules
 npm-debug.log
 

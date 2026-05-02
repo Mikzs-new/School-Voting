@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register(r'students', views.StudentViewSet, basename='students')
 
 urlpatterns = [
-    path('v1', include(router)),
+    path('v1/', include(router.urls)),
 ]
